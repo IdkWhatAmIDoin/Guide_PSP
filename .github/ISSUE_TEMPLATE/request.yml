@@ -1,0 +1,18 @@
+name: Feature Request
+description: I wont make an app for this guide. Im working on a .cmd file but not an .exe!
+labels: [request]
+body:
+  - type: textarea
+    attributes:
+      label: So, you wanna get a feature. What do you want?
+    validations:
+      required: true
+  - type: dropdown
+    id: eyetest
+    attributes:
+      label: To test your sight, and reliability, please select the option of what should NOT be requested.
+      options:
+        - A new site
+        - An app
+    validations:
+      required: true
