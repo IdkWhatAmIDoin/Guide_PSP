@@ -1,27 +1,134 @@
 <!DOCTYPE html>
-<html>
+<!-- comment -->
+<html lang="en">
 <head>
-<title>PSP CFW Guide</title>
-<p><center>Let me get this straight. You wanna go into the PSP hacking community, dont ya? Well i got you. Meet the guide for PSP CFW.</center></p>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>psp cfw guide</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- comment: the sequel -->
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080c0a;
+  --card:#101510;
+  --card2:#141a14;
+  --border:rgba(0,245,140,0.12);
+  --neon:#00f58c;
+  --neon2:#00c96e;
+  --neon-glow:rgba(0,245,140,0.15);
+  --text:#ddeedd;
+  --muted:#5a7a5a;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Nunito',sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.75;padding:0}
+.page{max-width:700px;margin:0 auto;padding:3rem 1.5rem 6rem}
+.header{background:var(--card);border:1px solid var(--border);border-radius:28px;padding:2.5rem 2.5rem 2rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(0,245,140,0.06) 0%,transparent 70%);pointer-events:none}
+.eyebrow{font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.6rem;display:flex;align-items:center;gap:8px}
+.eyebrow::before{content:'';width:18px;height:1px;background:var(--neon);opacity:0.5}
+h1{font-family:var(--mono);font-size:clamp(1.8rem,5vw,2.6rem);font-weight:600;color:#fff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.8rem}
+h1 em{color:var(--neon);font-style:normal}
+.subtitle{color:#6a886a;font-size:13.5px;font-weight:300;margin-bottom:1.5rem}
+.warning-pill{background:rgba(0,245,140,0.05);border:1px solid var(--border);border-radius:16px;padding:0.75rem 1.1rem;font-size:12.5px;color:#7a9a7a;display:flex;gap:10px;align-items:flex-start}
+.warning-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--neon);flex-shrink:0;margin-top:6px}
+.steps{display:flex;flex-direction:column;gap:1rem}
+.step{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:1.6rem 1.8rem;transition:border-color 0.2s}
+.step:hover{border-color:rgba(0,245,140,0.22)}
+.step-header{display:flex;align-items:center;gap:12px;margin-bottom:0.9rem}
+.step-num{font-family:var(--mono);font-size:10px;color:var(--neon);background:rgba(0,245,140,0.08);border:1px solid var(--border);border-radius:50px;padding:3px 10px;letter-spacing:0.08em;white-space:nowrap}
+.step-title{font-family:var(--mono);font-size:13px;font-weight:600;color:#cce8cc;letter-spacing:-0.01em}
+p{color:#7a9a7a;font-size:13.5px;font-weight:300;margin-bottom:0.6rem}
+p:last-child{margin-bottom:0}
+a{color:var(--neon);text-decoration:none;border-bottom:1px solid rgba(0,245,140,0.2);padding-bottom:1px;transition:border-color 0.15s}
+a:hover{border-color:var(--neon)}
+.req-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.2rem}
+.req-list li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:#7a9a7a;font-weight:300}
+.req-list li::before{content:'→';font-family:var(--mono);font-size:11px;color:var(--neon);margin-top:2px;flex-shrink:0}
+.callout{background:rgba(0,245,140,0.04);border:1px solid var(--border);border-radius:16px;padding:0.9rem 1.1rem;margin-top:0.9rem;font-size:13px;color:#6a886a}
+.callout strong{color:var(--neon);font-weight:500}
+.tag{font-family:var(--mono);font-size:10.5px;background:rgba(0,245,140,0.07);border:1px solid rgba(0,245,140,0.15);border-radius:8px;padding:1px 7px;color:var(--neon2)}
+.skip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:#5a7a5a;background:var(--card2);border:1px solid #1e2e1e;border-radius:50px;padding:2px 10px;margin-bottom:0.8rem;letter-spacing:0.04em}
+.finale{background:linear-gradient(135deg,#0d1a0f 0%,#0a150c 100%);border:1px solid rgba(0,245,140,0.18);border-radius:22px;padding:1.6rem 1.8rem;text-align:center;margin-top:1rem}
+.finale h2{font-family:var(--mono);font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:0.5rem}
+.finale p{color:#6a886a;font-size:13.5px}
+.footer{font-family:var(--mono);font-size:10px;color:#3a503a;margin-top:2.5rem;text-align:center;letter-spacing:0.07em}
+</style>
 </head>
 <body>
-<a href="https://idkwhatamidoin.github.io/Guide_PSP/youtube"><button>Try a new function - Connect your YouTube account</button></a href>
-<h1><center>A guide for PSP CFW</center></h1>
-<p><center>!!!WARNING: Half of the info are based off of/copied from some other sites or wololo.net. I'm not exactly a PSP hacker myself, but i'm sure this site will help you. Im also unsure if this will work the same on all PSP models, so go to wololo.net for a guide for PSP models other than PSP-3000. Update: I reviewed the wololo.net guides a bit more and its all the same for all models. You can safely use this on a model different than PSP-3000!</center></p>
-<h3>Requirements</h3>
-<p>This is the <a href="https://digiex.net/attachments/660pro-c2-zip.13618/">Pro CFW folder for 6.60</a>, this is the <a href="https://digiex.net/attachments/6-61-pro-c2_22-01-2015-zip.14263/">Pro CFW folder for 6.61</a> (To check version, go in Settings>System Settings>System Information)</p>
-<p>PSP with atleast <a href="https://wololo.net/downloads/index.php/version/1583">version 6.60.</a></p>
-<p>A Memory Stick Pro Duo, Memory Stick Pro-HG Duo, Memory Stick Pro-HG Duo HX</p>
-<h3>Updating</h3>
-<h4>Skip this step if you're already on 6.60/6.61!!!</h4>
-<p>To update from an older version of PSP to 6.60/6.61, follow these steps:</p>
-<p>The first option is through the internet. It's super easy, but the servers are i assume dead. You can try the other option: Updating through a Memory Stick.</p>
-<p>The second option is updating through a Memory Stick. I wont make this guide too long so go to <a href="https://www.wikihow.com/Upgrade-Your-PSP-Firmware">this guide from wikiHow.</a></p>
-<h3>Putting the CFW setup files onto the Memory Stick</h3>
-<p>Now we're getting into the real step 1. First, if you have a Memory Stick that is compatible with PSP, there should be a Memory Stick reader somewhere lying around your house. I'd recommend the Memory Stick Pro Duo microSD Adaptor since it supports microSD and Memory Stick Pro Duo.</p>
-<p>If you have all of the previous things checked out, download the Pro CFW folder, depending on your version of PSP. Extract it from .rar to a simple folder. Now, use your Memory Stick reader and plug in your Memory Stick you have. An explorer window will pop up. Go back to your Pro CFW folder, cause we need it right now. Copy the PSP folder, and paste it in your Memory Stick. If you get a replace popup, press "Replace All". There is also a seplugins folder, but i dont know whats it for. Regardless, paste it in your Memory Stick. Now...</p>
-<h2>INSTALLING IT ON THE PSP</h2>
-<p>Final step. You must plug the Memory Stick out of your Memory Stick reader like a real PSP hacker, and put it in your PSP Memory Stick slot. Go to the Games section and run the PRO-C Update game, and the CFW will install. Congratulations, you installed CFW on your PSP...... until you actually power it off. Yeah. Just run the Fast Recovery game every time you turn off and turn your PSP back on. Or, if you like to be a little more automated, you can download PSPIdent and do the same as i said about the CFW games. Plug in your Memory Stick, extract the PSPIdent .rar file, and put it in your Memory Stick. You can download PSPIdent <a href="https://digiex.net/attachments/pspident_075_21-10-2011-zip.13151/">here, </a>and put the Memory Stick back in your PSP. Run PSPIdent, and there will be a bunch of information about your PSP including your motherboard model and your PSP model. The 1.x or 2.x (x is a random number, doesnt mean anything to us) means your PSP is almost capable of running permanent CFW (the 1/2 means its a PSP 1000/PSP 2000). You can install this on any PSP 1000/PSP 2000 if the motherboard model isnt 88 v3. So, now you've got CFW. What now?                          PIRATE GAMES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! There will be an ISO folder in your Memory Stick once you've installed CFW on your PSP. If there isnt one, create one. You can now download free PSP games in an .iso formant and it'll work. So, this is the end. Goodbye.</p>
+<div class="page">
+
+  <div class="header">
+    <div class="eyebrow">custom firmware</div>
+    <h1>psp <em>cfw</em><br>guide</h1>
+    <p class="subtitle">a guide to running custom firmware on your psp · all models</p>
+    <div class="warning-pill">
+      <div class="dot"></div>
+      <span>some info is sourced from <a href="https://wololo.net" target="_blank">wololo.net</a> and other sites. originally written for psp-3000, but the steps are the same across all models.</span>
+    </div>
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-num">requirements</span>
+        <span class="step-title">what you need</span>
+      </div>
+      <ul class="req-list">
+        <li>psp on firmware 6.60 or 6.61 — check via settings › system settings › system information</li>
+        <li>memory stick pro duo, pro-hg duo, or pro-hg duo hx</li>
+        <li>pro cfw files for <a href="https://digiex.net/attachments/660pro-c2-zip.13618/" target="_blank">6.60</a> or <a href="https://digiex.net/attachments/6-61-pro-c2_22-01-2015-zip.14263/" target="_blank">6.61</a></li>
+        <li>a memory stick reader (a microsd adapter works great)</li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-num">step 01</span>
+        <span class="step-title">updating firmware</span>
+      </div>
+      <span class="skip">⌦ skip if you're on 6.60 or 6.61 already</span>
+      <p>online update is the easiest but the servers are probably dead. your best bet is updating via memory stick — <a href="https://www.wikihow.com/Upgrade-Your-PSP-Firmware" target="_blank">this wikihow guide</a> covers it.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-num">step 02</span>
+        <span class="step-title">copying files to memory stick</span>
+      </div>
+      <p>plug your memory stick into a reader and extract the cfw zip. copy the <span class="tag">PSP</span> folder to the root of your memory stick — replace all if prompted. paste the <span class="tag">seplugins</span> folder in too.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-num">step 03</span>
+        <span class="step-title">installing cfw on the psp</span>
+      </div>
+      <p>eject the memory stick, slot it into your psp, head to the games menu and run <span class="tag">PRO-C Update</span>. cfw is now installed.</p>
+      <div class="callout">
+        <strong>heads up:</strong> cfw resets on power off. run <span class="tag">Fast Recovery</span> every time you restart — or see below for the permanent option.
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-num">optional</span>
+        <span class="step-title">permanent cfw (psp 1000 / 2000 only)</span>
+      </div>
+      <p>download <a href="https://digiex.net/attachments/pspident_075_21-10-2011-zip.13151/" target="_blank">pspident</a>, copy it to the memory stick and run it. if you have a psp 1000 or 2000 and the motherboard isn't <span class="tag">88 v3</span>, you can install permanent cfw — no more fast recovery.</p>
+    </div>
+
+    <div class="finale">
+      <h2>you're done 🎉</h2>
+      <p>there's an <span class="tag">ISO</span> folder on your memory stick now (create it if missing). drop psp game isos in there and they'll show up in your games menu. enjoy.</p>
+    </div>
+
+  </div>
+
+  <p class="footer">// psp cfw guide · idkwhatamidoin.github.io</p>
+
+</div>
 </body>
 </html>
-
