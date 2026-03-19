@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<!-- comment -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>psp cfw guide</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
-<!-- comment: the sequel -->
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -16,23 +14,25 @@
   --border:rgba(0,245,140,0.12);
   --neon:#00f58c;
   --neon2:#00c96e;
-  --neon-glow:rgba(0,245,140,0.15);
   --text:#ddeedd;
   --muted:#5a7a5a;
+  --warn:#f5a623;
+  --warn-bg:rgba(245,166,35,0.07);
+  --warn-border:rgba(245,166,35,0.2);
   --mono:'JetBrains Mono',monospace;
   --sans:'Nunito',sans-serif;
 }
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.75;padding:0}
-.page{max-width:700px;margin:0 auto;padding:3rem 1.5rem 6rem}
-.header{background:var(--card);border:1px solid var(--border);border-radius:28px;padding:2.5rem 2.5rem 2rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.page{max-width:960px;margin:0 auto;padding:3rem 3rem 6rem}
+.header{background:var(--card);border:1px solid var(--border);border-radius:28px;padding:2.5rem 2.5rem 2rem;margin-bottom:1rem;position:relative;overflow:hidden}
 .header::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(0,245,140,0.06) 0%,transparent 70%);pointer-events:none}
 .eyebrow{font-family:var(--mono);font-size:10px;color:var(--neon);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.6rem;display:flex;align-items:center;gap:8px}
 .eyebrow::before{content:'';width:18px;height:1px;background:var(--neon);opacity:0.5}
 h1{font-family:var(--mono);font-size:clamp(1.8rem,5vw,2.6rem);font-weight:600;color:#fff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.8rem}
 h1 em{color:var(--neon);font-style:normal}
 .subtitle{color:#6a886a;font-size:13.5px;font-weight:300;margin-bottom:1.5rem}
-.warning-pill{background:rgba(0,245,140,0.05);border:1px solid var(--border);border-radius:16px;padding:0.75rem 1.1rem;font-size:12.5px;color:#7a9a7a;display:flex;gap:10px;align-items:flex-start}
-.warning-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--neon);flex-shrink:0;margin-top:6px}
+.notice{background:rgba(0,245,140,0.04);border:1px solid var(--border);border-radius:16px;padding:0.75rem 1.1rem;font-size:12.5px;color:#7a9a7a;display:flex;gap:10px;align-items:flex-start}
+.notice .dot{width:6px;height:6px;border-radius:50%;background:var(--neon);flex-shrink:0;margin-top:6px}
 .steps{display:flex;flex-direction:column;gap:1rem}
 .step{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:1.6rem 1.8rem;transition:border-color 0.2s}
 .step:hover{border-color:rgba(0,245,140,0.22)}
@@ -45,14 +45,23 @@ a{color:var(--neon);text-decoration:none;border-bottom:1px solid rgba(0,245,140,
 a:hover{border-color:var(--neon)}
 .req-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.2rem}
 .req-list li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:#7a9a7a;font-weight:300}
-.req-list li::before{content:'→';font-family:var(--mono);font-size:11px;color:var(--neon);margin-top:2px;flex-shrink:0}
-.callout{background:rgba(0,245,140,0.04);border:1px solid var(--border);border-radius:16px;padding:0.9rem 1.1rem;margin-top:0.9rem;font-size:13px;color:#6a886a}
+.req-list li::before{content:'→';font-family:var(--mono);font-size:11px;color:var(--neon);margin-top:2px;flex-shrink:0;opacity:0.7}
+.callout{background:rgba(0,245,140,0.04);border:1px solid var(--border);border-radius:14px;padding:0.9rem 1.1rem;margin-top:0.9rem;font-size:13px;color:#6a886a}
 .callout strong{color:var(--neon);font-weight:500}
+.warn-box{background:var(--warn-bg);border:1px solid var(--warn-border);border-radius:14px;padding:0.75rem 1rem;margin-top:0.8rem;font-size:12.5px;color:#b8882a;display:flex;gap:9px;align-items:flex-start}
+.warn-dot{width:5px;height:5px;border-radius:50%;background:var(--warn);flex-shrink:0;margin-top:7px}
 .tag{font-family:var(--mono);font-size:10.5px;background:rgba(0,245,140,0.07);border:1px solid rgba(0,245,140,0.15);border-radius:8px;padding:1px 7px;color:var(--neon2)}
 .skip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:#5a7a5a;background:var(--card2);border:1px solid #1e2e1e;border-radius:50px;padding:2px 10px;margin-bottom:0.8rem;letter-spacing:0.04em}
-.finale{background:linear-gradient(135deg,#0d1a0f 0%,#0a150c 100%);border:1px solid rgba(0,245,140,0.18);border-radius:22px;padding:1.6rem 1.8rem;text-align:center;margin-top:1rem}
+.finale{background:linear-gradient(135deg,#0d1a0f 0%,#0a150c 100%);border:1px solid rgba(0,245,140,0.18);border-radius:22px;padding:1.6rem 1.8rem;text-align:center;margin-top:0.5rem}
 .finale h2{font-family:var(--mono);font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:0.5rem}
 .finale p{color:#6a886a;font-size:13.5px}
+.nav{display:flex;flex-direction:column;gap:0.5rem;margin-top:0.9rem}
+.nav-link{display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0.9rem;background:var(--card2);border:1px solid #1e2e1e;border-radius:12px;text-decoration:none;border-bottom:none;transition:border-color 0.2s;color:inherit}
+.nav-link:hover{border-color:var(--border)}
+.nav-link-l{display:flex;align-items:center;gap:9px}
+.nav-n{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:0.06em}
+.nav-t{font-size:12.5px;color:#9ab89a;font-weight:400}
+.nav-arr{font-family:var(--mono);font-size:10px;color:var(--muted)}
 .footer{font-family:var(--mono);font-size:10px;color:#3a503a;margin-top:2.5rem;text-align:center;letter-spacing:0.07em}
 </style>
 </head>
@@ -63,7 +72,7 @@ a:hover{border-color:var(--neon)}
     <div class="eyebrow">custom firmware</div>
     <h1>psp <em>cfw</em><br>guide</h1>
     <p class="subtitle">a guide to running custom firmware on your psp · all models</p>
-    <div class="warning-pill">
+    <div class="notice">
       <div class="dot"></div>
       <span>some info is sourced from <a href="https://wololo.net" target="_blank">wololo.net</a> and other sites. originally written for psp-3000, but the steps are the same across all models.</span>
     </div>
@@ -79,7 +88,7 @@ a:hover{border-color:var(--neon)}
       <ul class="req-list">
         <li>psp on firmware 6.60 or 6.61 — check via settings › system settings › system information</li>
         <li>memory stick pro duo, pro-hg duo, or pro-hg duo hx</li>
-        <li>pro cfw files for <a href="https://digiex.net/attachments/660pro-c2-zip.13618/" target="_blank">6.60</a> or <a href="https://digiex.net/attachments/6-61-pro-c2_22-01-2015-zip.14263/" target="_blank">6.61</a></li>
+        <li><a href="https://github.com/PSP-Archive/ARK-4/releases/latest" target="_blank">ARK-4 latest release</a> — download the zip from github</li>
         <li>a memory stick reader (a microsd adapter works great)</li>
       </ul>
     </div>
@@ -89,8 +98,12 @@ a:hover{border-color:var(--neon)}
         <span class="step-num">step 01</span>
         <span class="step-title">updating firmware</span>
       </div>
-      <span class="skip">⌦ skip if you're on 6.60 or 6.61 already</span>
+      <div class="skip">⌦ skip if you're on 6.60 or 6.61 already</div>
       <p>online update is the easiest but the servers are probably dead. your best bet is updating via memory stick — <a href="https://www.wikihow.com/Upgrade-Your-PSP-Firmware" target="_blank">this wikihow guide</a> covers it.</p>
+      <div class="warn-box">
+        <div class="warn-dot"></div>
+        <span>keep your psp plugged in or at 75%+ battery during the update. don't power it off mid-flash or you'll brick it.</span>
+      </div>
     </div>
 
     <div class="step">
@@ -98,7 +111,7 @@ a:hover{border-color:var(--neon)}
         <span class="step-num">step 02</span>
         <span class="step-title">copying files to memory stick</span>
       </div>
-      <p>plug your memory stick into a reader and extract the cfw zip. copy the <span class="tag">PSP</span> folder to the root of your memory stick — replace all if prompted. paste the <span class="tag">seplugins</span> folder in too.</p>
+      <p>plug your memory stick into a reader and extract the ARK-4 zip. copy <span class="tag">ARK_01234</span> to <span class="tag">/PSP/SAVEDATA/</span> and copy <span class="tag">ARK_Loader</span> to <span class="tag">/PSP/GAME/</span>.</p>
     </div>
 
     <div class="step">
@@ -106,9 +119,9 @@ a:hover{border-color:var(--neon)}
         <span class="step-num">step 03</span>
         <span class="step-title">installing cfw on the psp</span>
       </div>
-      <p>eject the memory stick, slot it into your psp, head to the games menu and run <span class="tag">PRO-C Update</span>. cfw is now installed.</p>
+      <p>eject the memory stick, slot it into your psp, head to the game menu and run <span class="tag">ARK Loader</span>. the psp will soft restart — you're now running ark-4.</p>
       <div class="callout">
-        <strong>heads up:</strong> cfw resets on power off. run <span class="tag">Fast Recovery</span> every time you restart — or see below for the permanent option.
+        <strong>heads up:</strong> cfw resets on full power off. relaunch <span class="tag">ARK Loader</span> after each cold boot — or install permanent cfw below (works on all models including psp-3000).
       </div>
     </div>
 
@@ -117,12 +130,41 @@ a:hover{border-color:var(--neon)}
         <span class="step-num">optional</span>
         <span class="step-title">permanent cfw (psp 1000 / 2000 only)</span>
       </div>
-      <p>download <a href="https://digiex.net/attachments/pspident_075_21-10-2011-zip.13151/" target="_blank">pspident</a>, copy it to the memory stick and run it. if you have a psp 1000 or 2000 and the motherboard isn't <span class="tag">88 v3</span>, you can install permanent cfw — no more fast recovery.</p>
+      <p>with ark-4 running temporarily, copy <span class="tag">ARK_cIPL</span> to <span class="tag">/PSP/GAME/</span> and run <span class="tag">ARK cIPL Flasher</span>. works on <strong>all models</strong> including psp-3000 — no motherboard check needed.</p>
     </div>
 
     <div class="finale">
       <h2>you're done 🎉</h2>
-      <p>there's an <span class="tag">ISO</span> folder on your memory stick now (create it if missing). drop psp game isos in there and they'll show up in your games menu. enjoy.</p>
+      <p>there's an <span class="tag">ISO</span> folder on your memory stick now (create it if missing). drop psp game isos in there and they'll show up in your game menu. enjoy.</p>
+    </div>
+
+    <div class="step" style="padding: 1.2rem 1.8rem;">
+      <div class="step-header" style="margin-bottom:0.6rem">
+        <span class="step-num">full docs</span>
+        <span class="step-title">split guide</span>
+      </div>
+      <div class="nav">
+        <a class="nav-link" href="https://github.com/IdkWhatAmIDoin/Guide_PSP/blob/main/docs/01-identify.md" target="_blank">
+          <div class="nav-link-l"><span class="nav-n">01</span><span class="nav-t">identifying your psp</span></div>
+          <span class="nav-arr">→</span>
+        </a>
+        <a class="nav-link" href="https://github.com/IdkWhatAmIDoin/Guide_PSP/blob/main/docs/02-firmware.md" target="_blank">
+          <div class="nav-link-l"><span class="nav-n">02</span><span class="nav-t">updating firmware</span></div>
+          <span class="nav-arr">→</span>
+        </a>
+        <a class="nav-link" href="https://github.com/IdkWhatAmIDoin/Guide_PSP/blob/main/docs/03-install-cfw.md" target="_blank">
+          <div class="nav-link-l"><span class="nav-n">03</span><span class="nav-t">installing cfw</span></div>
+          <span class="nav-arr">→</span>
+        </a>
+        <a class="nav-link" href="https://github.com/IdkWhatAmIDoin/Guide_PSP/blob/main/docs/04-permanent.md" target="_blank">
+          <div class="nav-link-l"><span class="nav-n">04</span><span class="nav-t">permanent cfw</span></div>
+          <span class="nav-arr">→</span>
+        </a>
+        <a class="nav-link" href="https://github.com/IdkWhatAmIDoin/Guide_PSP/blob/main/docs/05-games.md" target="_blank">
+          <div class="nav-link-l"><span class="nav-n">05</span><span class="nav-t">playing games & plugins</span></div>
+          <span class="nav-arr">→</span>
+        </a>
+      </div>
     </div>
 
   </div>
