@@ -18,7 +18,7 @@ sony's update servers are likely offline. if it works, great. if not, use option
 ## option b — update via memory stick
 
 1. download the official firmware from sony:
-   - [psp firmware 6.61](https://www.playstation.com/en-us/support/hardware/psp/update/)
+   - [psp firmware 6.61](https://archive.org/details/PSP_System_Software_Update_Version_6.61)
 2. on your memory stick, create this path: `/PSP/GAME/UPDATE/`
 3. rename the downloaded file to `EBOOT.PBP` and drop it in that folder
 4. slot the memory stick into your psp and go to `game → memory stick`
