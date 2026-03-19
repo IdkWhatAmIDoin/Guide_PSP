@@ -11,10 +11,12 @@
 | model | also known as | permanent cfw? |
 |---|---|---|
 | psp-1000 | phat / fat | ✅ yes |
-| psp-2000 | slim | ✅ yes (all motherboards) |
+| psp-2000 | slim | ✅ yes |
 | psp-3000 | brite | ✅ yes |
 | psp go | go | ✅ yes |
 | psp street / e1000 | street | ✅ yes |
+
+<sub>this table said no on 3000 and later before i realized i gotta switch those since ark-4 exists. srry guys</sub>
 
 > [!NOTE]
 > ARK-4 supports permanent cfw via cIPL on **all psp models** — no exceptions. you can also run it as temporary cfw first to try things out before committing.
